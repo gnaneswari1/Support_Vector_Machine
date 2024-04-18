@@ -1,0 +1,45 @@
+SVM
+
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+# Instantiate the SVM classifier
+svm_classifier = SVC(kernel='linear', C=1.0)  # Linear kernel is chosen here, you can try other kernels as well
+
+# Train the SVM classifier on the training data
+svm_classifier.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred_svm = svm_classifier.predict(X_test)
+# Evaluate the performance of the SVM classifier
+accuracy_svm = accuracy_score(y_test, y_pred_svm)
+print("Accuracy:", accuracy_svm)
+
+print("Classification Report:")
+print(classification_report(y_test, y_pred_svm))
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred_svm))
+from sklearn.model_selection import GridSearchCV
+
+# Define the hyperparameters grid
+param_grid = {
+    'penalty': ['l1', 'l2'],
+    'C': [0.001, 0.01, 0.1, 1, 10, 100],
+    'max_iter': [100, 500, 1000]
+}
+# Train the logistic regression model with the best hyperparameters
+lr_best = LogisticRegression(**best_params)
+lr_best.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred_best = lr_best.predict(X_test)
+# Evaluate the model
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+accuracy = accuracy_score(y_test, y_pred_best)
+print("Accuracy:", accuracy)
+
+print("Classification Report:")
+print(classification_report(y_test, y_pred_best))
+
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred_best))
